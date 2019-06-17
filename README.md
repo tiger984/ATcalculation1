@@ -1,22 +1,14 @@
-
-
-
-
-# ATcalculation
+# 牵引供电系统计算软件
 AT system calculation by python
-牵引供电系统计算软件
-# 平行多导线系统参数计算函数 '<h1>'
-
-
 编写人： 陈剑云
-
- ## 1 多导线原始参数
+## 平行多导线系统参数计算函数
+### 1 多导线原始参数
  
  **牵引网导线架设横截面示意图**
 
   ![%E5%A4%8D%E7%BA%BFAT%E5%AF%BC%E7%BA%BF%E7%A9%BA%E9%97%B4%E5%88%86%E5%B8%83%E5%9B%BE.vsd.jpg](attachment:%E5%A4%8D%E7%BA%BFAT%E5%AF%BC%E7%BA%BF%E7%A9%BA%E9%97%B4%E5%88%86%E5%B8%83%E5%9B%BE.vsd.jpg)   
 
-
+ ![ 导体镜像截面图](/images/conductors_section.png "")
 
 
 **导线编号：**
@@ -62,7 +54,7 @@ conductors_resistance=np.array([0.146,0.158,0.163,0.135,0.135,0.255,0.28,0.146,0
                                
 {原始参数在软件开发前期用数组形式给出，在后阶段以数据文件的形式存储，通过读取数据生成变量。}
 
-## 2 电位系数矩阵计算
+### 2 电位系数矩阵计算
 
   **函数名：  calc_potential_coefficient(c_xy,r)** 
   
@@ -89,7 +81,7 @@ conductors_resistance=np.array([0.146,0.158,0.163,0.135,0.135,0.255,0.28,0.146,0
   ![conductors_section.png](attachment:conductors_section.png)
   
 
- ## 3 导线合并，求合并后的电位系数
+ ### 3 导线合并，求合并后的电位系数
  
   ** 函数名: merge_potential_coefficient(P,m,k)**
  * parameters:    
@@ -226,7 +218,7 @@ $$u_i=（P_{i1}-P_{ik}K_1)q_1+\dots+(P_{im}-P_{ik}K_m)q_m+\dots+(P_{in}-P_{ik}K_
 （3）除P中的第k行第k列，P降n-1阶，为合并后n-1根导线的电位系数矩阵。
 
 
-### 例
+#### 例
 AT牵引网络由14根导线逐步合并成6根导线：
    
   （1） 1. 接触线（CW1）+ 2.承力索（MW1）
@@ -243,13 +235,13 @@ AT牵引网络由14根导线逐步合并成6根导线：
   
    
 
-## 4 电容系数矩阵计算
+### 4 电容系数矩阵计算
 
 函数名： calc_B(P)
 
 
 
-##  5 理想导体时电感L矩阵计算  
+###  5 理想导体时电感L矩阵计算  
 
 **函数名：calc_L(c_xy,r)**  
 * Parameters:
@@ -269,7 +261,7 @@ AT牵引网络由14根导线逐步合并成6根导线：
  其中　$$\mu_0=4\pi10^{-4} (H/km)$$
 
 
-## 6 计算导线内电阻和内电感
+### 6 计算导线内电阻和内电感
 **函数名： calc_Zc(f,Rd,r,rho,mu_r)**
 * Parameters:
     1. f:       频率（Hz）
@@ -304,7 +296,7 @@ $$\alpha_L=\frac{4}{mr}[\frac{bermr.bei'mr+bermr.ber'mr}{(ber'mr)^2+(bei'mr)^2}]
  
  导线内阻一般用上述基于贝塞尔函数的公式计算。对于一般导线，其导磁率取$\mu_0$，如果导线是钢轨，由于是铁磁材质，其导磁率$\mu$为$\mu_r\mu_0$,其数值需要钢轨磁滞曲线给出。若考虑钢轨是非规则截面导体，其精确的阻抗需要通过用有限元软件计算给出。
 
-## 7 计算大地与导线回路电阻和电感
+### 7 计算大地与导线回路电阻和电感
 **函数名：calc_Zgm(f,c_xy，rou)**  
 *  Parameters:
     1. f:       频率（Hz）
@@ -318,7 +310,7 @@ $$\alpha_L=\frac{4}{mr}[\frac{bermr.bei'mr+bermr.ber'mr}{(ber'mr)^2+(bei'mr)^2}]
 
 
 
-## 8 频变阻抗矩阵计算
+### 8 频变阻抗矩阵计算
 
 ** calc-Zf(f,c_xy,r,Rd,rou) **
 * Parameters:
@@ -332,7 +324,7 @@ $$\alpha_L=\frac{4}{mr}[\frac{bermr.bei'mr+bermr.ber'mr}{(ber'mr)^2+(bei'mr)^2}]
     1. Zf:      导线频变阻抗矩阵
     
 
-## 9 简化阻抗矩阵计算
+### 9 简化阻抗矩阵计算
 ** calc_z(f,c_xy,re,Rd,rou)** 
 * Parameters:
     1. f:       频率（Hz）
@@ -346,7 +338,7 @@ $$\alpha_L=\frac{4}{mr}[\frac{bermr.bei'mr+bermr.ber'mr}{(ber'mr)^2+(bei'mr)^2}]
     3. z:      导线阻抗矩阵
     
 
-## 10 阻抗矩阵合并
+### 10 阻抗矩阵合并
 
 ** 函数名：merge_z(z,m,k)**
 * parameters:    
